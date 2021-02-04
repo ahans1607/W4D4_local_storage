@@ -56,14 +56,17 @@ let showCart = function (){
         if (document.getElementById(keys[i])){
           //then update the Qty
           let myQty = parseInt(localStorage.getItem(keys[i]));
-          
+          console.log("Adding " + myQty + " new " + keys[i] + " to the the cart");
+          console.log("There is already " + document.getElementById(keys[i]).innerText + " apples in the cart");
+
+          console.log(parseInt(document.getElementById(keys[i]).innerText));
+
       } else {
         //Otherwise create thing
         let myNewItem = document.createElement("p")
         myNewItem.innerText = keys[i] + " " + values[i];
         myNewItem.id = keys[i]
         document.getElementById('shopping-cart').append(myNewItem);
-
       }
   }
 }
