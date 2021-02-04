@@ -8,8 +8,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     let myForm = document.querySelector("form");
     myForm.addEventListener("submit", function(event){
-      event.preventDefault();
-
+    event.preventDefault();
         storeItems(event);
     });
 
@@ -29,12 +28,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 
 let storeItems = function(event){
-  
   let myItem = document.getElementById("items");
-  console.log(myItem.value)
-
   let myQty = document.getElementById("quantity")
-  console.log(myQty.value.toString())
 
-  localStorage.setItem(myItem, myQty);
+  localStorage.setItem(myItem.value, myQty.value);
+}
+
+let showCart = function (event){
+    let myItem = document.getElementById("items");
+    let myQty = document.getElementById("quantity")
+    console.log(localStorage.getItem(myItem.value));
+
+
 }
