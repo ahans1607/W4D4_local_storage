@@ -50,29 +50,20 @@ let showCart = function (){
   //   }
     let keys = Object.keys(localStorage);
     let values = Object.values(localStorage);
+
     for (let i = 0; i < keys.length; i++){
-        //TAGS = Query Selector
-        //CLASS = Get them all
-        //ID = get one
-
-
-        // if apple is already in the HTML
-
-
-
-        //dont add new apple
-
-        //Adding new apples
+        // if thing is already in the HTML
+        if (document.getElementById(keys[i])){
+          //then update the Qty
+          let myQty = parseInt(localStorage.getItem(keys[i]));
+          
+      } else {
+        //Otherwise create thing
         let myNewItem = document.createElement("p")
         myNewItem.innerText = keys[i] + " " + values[i];
         myNewItem.id = keys[i]
         document.getElementById('shopping-cart').append(myNewItem);
 
-        if (myNewItem.id){
-            continue
-        }
-
-        //Update the apple with the + qty
-
+      }
   }
 }
