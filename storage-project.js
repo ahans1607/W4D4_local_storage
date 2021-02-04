@@ -13,14 +13,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         storeItems(event);
     });
 
-  // const showCart = () => {
-
-  // };
-
-  // const storeItem = () => {
-
-  // };
-
   // const removeItem = () => {
 
   // };
@@ -33,12 +25,14 @@ let storeItems = function(event){
   let myQty = document.getElementById("quantity")
 
   localStorage.setItem(myItem.value, myQty.value);
-  showCart();
+  showCart(myItem);
 }
 
-{/* <p>testItem</p> */}
+let removeItems = function (){
 
-let showCart = function (){
+}
+
+let showCart = function (item){
     // let myItem = document.getElementById("items");
     // let myQty = document.getElementById("quantity")
     // console.log(localStorage.getItem(myItem.value));
@@ -55,11 +49,14 @@ let showCart = function (){
     for (let i = 0; i < keys.length; i++){
         // if thing is already in the HTML
         if (document.getElementById(keys[i])){
-          //then update the Qty
-          let myQty = parseInt(localStorage.getItem(keys[i]));
-          let theStringINeedToParse = document.getElementById(keys[i]).innerText
-          myQty += parseInt(parseMyString(theStringINeedToParse));
-          document.getElementById(keys[i]).innerText = keys[i] + " " + myQty
+            if (item.value === keys[i]){
+                //then update the Qty
+                let myQty = parseInt(localStorage.getItem(keys[i]));
+                let theStringINeedToParse = document.getElementById(keys[i]).innerText
+                myQty += parseInt(parseMyString(theStringINeedToParse));
+                document.getElementById(keys[i]).innerText = keys[i] + " " + myQty
+            }
+
 
       } else {
         //Otherwise create thing
@@ -67,10 +64,20 @@ let showCart = function (){
         myNewItem.innerText = keys[i] + " " + values[i];
         myNewItem.id = keys[i]
         document.getElementById('shopping-cart').append(myNewItem);
-      }
+
+        //Also make a remove button for the thing
+            // <button> my new buutton</button>
+            let newButton = document.createElement("button");
+
+            newButton.addEventListener('click', function (event){
+                console.log("I clicked ", event.target);
+                localStorage.removeItem(keys[i]);
+            })
+            myNewItem.appendChild(newButton);
+
+        }
   }
 }
-
 let parseMyString = function(string){
   let result = []
   for (let i = 0; i < NUMBERS.length; i++){
