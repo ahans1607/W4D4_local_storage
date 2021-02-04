@@ -1,3 +1,4 @@
+const NUMBERS = [0,1,2,3,4,5,6,7,8,9];
 window.addEventListener("DOMContentLoaded", (event) => {
 
     // const formFieldItems = document.getElementById('items')
@@ -56,10 +57,9 @@ let showCart = function (){
         if (document.getElementById(keys[i])){
           //then update the Qty
           let myQty = parseInt(localStorage.getItem(keys[i]));
-          console.log("Adding " + myQty + " new " + keys[i] + " to the the cart");
-          console.log("There is already " + document.getElementById(keys[i]).innerText + " apples in the cart");
-
-          console.log(parseInt(document.getElementById(keys[i]).innerText));
+          let theStringINeedToParse = document.getElementById(keys[i]).innerText
+          myQty += parseInt(parseMyString(theStringINeedToParse));
+          document.getElementById(keys[i]).innerText = keys[i] + " " + myQty
 
       } else {
         //Otherwise create thing
@@ -69,4 +69,19 @@ let showCart = function (){
         document.getElementById('shopping-cart').append(myNewItem);
       }
   }
+}
+
+let parseMyString = function(string){
+  let result = []
+  for (let i = 0; i < NUMBERS.length; i++){
+    let number = NUMBERS[i]
+    // console.log(number)
+      for (let j = 0; j < string.length; j++){
+        // console.log(string[j])
+        if(string[j] === number.toString()){
+          result.push(string[j])
+        }
+      }
+  }
+  return result.join("")
 }
